@@ -113,9 +113,3 @@ The project is well-structured and follows the best practices of Clean Architect
 - **Maintainability:** 9/10
 
 **Overall Rating:** 8.7/10
-
-## Optional Recommendations
-
-- **Add Tests:** The project lacks unit and widget tests. Adding tests would improve the code quality and prevent regressions.
-- **Error Handling:** The error handling can be improved by providing more specific error messages to the user.
-- **Input Validation:** The frontend should validate the user input before sending it to the backend.
