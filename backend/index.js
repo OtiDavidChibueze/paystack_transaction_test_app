@@ -30,6 +30,8 @@ app.post("/api/v1/transaction/initialize", async (req, res) => {
       }
     );
 
+    console.log(response.data);
+
     res.json(response.data);
   } catch (error) {
     res.status(500).json({ error: error.message });

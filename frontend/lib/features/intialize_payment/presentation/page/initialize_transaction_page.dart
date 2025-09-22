@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frontend/core/animation/animation_enum.dart';
+import 'package:frontend/core/animation/animation_service.dart';
 import 'package:frontend/core/injector/injector.dart';
 import 'package:frontend/features/intialize_payment/domain/entity/initialize_transaction_entity.dart';
 import 'package:frontend/features/intialize_payment/presentation/bloc/initialize_transaction_bloc.dart';
@@ -63,8 +65,7 @@ class _InitializePaymentPageState extends State<InitializeTransactionPage> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => injector<InitializeTransactionBloc>(),
-      child:
-          BlocConsumer<InitializeTransactionBloc, InitializeTransactionState>(
+      child: BlocConsumer<InitializeTransactionBloc, InitializeTransactionState>(
         listener: (context, state) {
           if (state.status == InitializeTransactionStatus.success &&
               state.data?.data != null) {
@@ -98,20 +99,34 @@ class _InitializePaymentPageState extends State<InitializeTransactionPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: 40),
-                          const Text(
-                            "Make a Payment",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 32,
+                          AnimationService(
+                            type: AnimationType.slide,
+                            slideDirection: SlideDirection.up,
+                            duration: Duration(seconds: 2),
+                            delay: Duration(seconds: 3),
+                            curve: Curves.easeIn,
+
+                            child: const Text(
+                              "Make a Payment",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 32,
+                              ),
                             ),
                           ),
                           const SizedBox(height: 8),
-                          const Text(
-                            "Enter your details below to proceed.",
-                            style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: 16,
+                          AnimationService(
+                            type: AnimationType.slide,
+                            slideDirection: SlideDirection.right,
+                            duration: Duration(seconds: 2),
+                            delay: Duration(seconds: 3),
+                            child: const Text(
+                              "Enter your details below to proceed.",
+                              style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: 16,
+                              ),
                             ),
                           ),
                           const SizedBox(height: 40),
@@ -129,13 +144,16 @@ class _InitializePaymentPageState extends State<InitializeTransactionPage> {
                                     if (message.isNotEmpty)
                                       Padding(
                                         padding: const EdgeInsets.only(
-                                            bottom: 16.0),
+                                          bottom: 16.0,
+                                        ),
                                         child: Text(
                                           message,
                                           style: TextStyle(
-                                            color: message.contains("failed") ||
-                                                    message
-                                                        .contains("Could not")
+                                            color:
+                                                message.contains("failed") ||
+                                                    message.contains(
+                                                      "Could not",
+                                                    )
                                                 ? Colors.red
                                                 : Colors.green,
                                             fontWeight: FontWeight.w500,
@@ -153,8 +171,8 @@ class _InitializePaymentPageState extends State<InitializeTransactionPage> {
                                       ),
                                       validator: (value) =>
                                           value == null || value.isEmpty
-                                              ? "Amount required"
-                                              : null,
+                                          ? "Amount required"
+                                          : null,
                                     ),
                                     const SizedBox(height: 20),
                                     TextFormField(
@@ -167,40 +185,43 @@ class _InitializePaymentPageState extends State<InitializeTransactionPage> {
                                       ),
                                       validator: (value) =>
                                           value == null || value.isEmpty
-                                              ? "Email required"
-                                              : null,
+                                          ? "Email required"
+                                          : null,
                                     ),
                                     const SizedBox(height: 40),
                                     ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                         foregroundColor: Colors.white,
-                                        backgroundColor:
-                                            const Color(0xFF0D47A1),
+                                        backgroundColor: const Color(
+                                          0xFF0D47A1,
+                                        ),
                                         shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
                                         ),
                                         padding: const EdgeInsets.symmetric(
                                           vertical: 16,
                                         ),
                                         minimumSize: const Size(
-                                            double.infinity, 50),
+                                          double.infinity,
+                                          50,
+                                        ),
                                         elevation: 5,
                                       ),
                                       onPressed: () {
                                         if (_formKey.currentState!.validate()) {
                                           final amount =
-                                              int.parse(_amountCtrl.text) *
-                                                  100;
+                                              int.parse(_amountCtrl.text) * 100;
                                           context
                                               .read<InitializeTransactionBloc>()
                                               .add(
                                                 InitializeTransactionEvent(
                                                   params:
                                                       InitializeTransactionEntity(
-                                                    amount: amount,
-                                                    email: _emailCtrl.text,
-                                                  ),
+                                                        amount: amount,
+                                                        email: _emailCtrl.text,
+                                                      ),
                                                 ),
                                               );
                                         }
@@ -221,12 +242,19 @@ class _InitializePaymentPageState extends State<InitializeTransactionPage> {
                           const SizedBox(height: 30),
                           const Align(
                             alignment: Alignment.center,
-                            child: Text(
-                              "Powered by DhayveScript Solutions",
-                              style: TextStyle(
-                                color: Colors.white70,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14,
+                            child: AnimationService(
+                              type: AnimationType.slide,
+                              duration: Duration(seconds: 5),
+                              curve: Curves.easeIn,
+                              slideDirection: SlideDirection.left,
+
+                              child: Text(
+                                "Powered by DhayveScript Solutions",
+                                style: TextStyle(
+                                  color: Colors.white70,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                ),
                               ),
                             ),
                           ),
@@ -285,11 +313,20 @@ class BackgroundPainter extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     canvas.drawCircle(
-        Offset(size.width * 0.9, size.height * 0.1), 50, circlePaint);
+      Offset(size.width * 0.9, size.height * 0.1),
+      50,
+      circlePaint,
+    );
     canvas.drawCircle(
-        Offset(size.width * 0.2, size.height * 0.8), 100, circlePaint);
+      Offset(size.width * 0.2, size.height * 0.8),
+      100,
+      circlePaint,
+    );
     canvas.drawCircle(
-        Offset(size.width * 0.5, size.height * 0.5), 75, circlePaint);
+      Offset(size.width * 0.5, size.height * 0.5),
+      75,
+      circlePaint,
+    );
   }
 
   @override
