@@ -103,7 +103,7 @@ class _InitializePaymentPageState extends State<InitializeTransactionPage> {
                             type: AnimationType.slide,
                             slideDirection: SlideDirection.up,
                             duration: Duration(seconds: 2),
-                            delay: Duration(seconds: 3),
+                            // delay: Duration(seconds: 2),
                             curve: Curves.easeIn,
 
                             child: const Text(
@@ -120,7 +120,7 @@ class _InitializePaymentPageState extends State<InitializeTransactionPage> {
                             type: AnimationType.slide,
                             slideDirection: SlideDirection.right,
                             duration: Duration(seconds: 2),
-                            delay: Duration(seconds: 3),
+                            // delay: Duration(seconds: 2),
                             child: const Text(
                               "Enter your details below to proceed.",
                               style: TextStyle(
@@ -244,8 +244,7 @@ class _InitializePaymentPageState extends State<InitializeTransactionPage> {
                             alignment: Alignment.center,
                             child: AnimationService(
                               type: AnimationType.slide,
-                              duration: Duration(seconds: 5),
-                              curve: Curves.easeIn,
+                              duration: Duration(seconds: 2),
                               slideDirection: SlideDirection.left,
 
                               child: Text(
