@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://paystack-transaction-test-app.vercel.app/",
+    origin: "https://paystack-transaction-test-app.vercel.app",
   })
 );
 
