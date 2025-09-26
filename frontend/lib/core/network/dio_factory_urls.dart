@@ -1,4 +1,3 @@
 class DioFactoryUrls {
-  static const String baseUrl =
-      'https://paystack-transaction-test-app.vercel.app/api/v1';
+  static const String baseUrl = 'http://172.20.10.8:3000/api/v1';
 }

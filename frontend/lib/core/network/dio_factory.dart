@@ -80,6 +80,9 @@ class _ErrorInterceptor extends Interceptor {
       case DioExceptionType.badResponse:
         message = "Server error: ${err.response?.statusCode}";
         break;
+      case DioExceptionType.connectionError:
+        message = "No internet connection.";
+        break;
       default:
         message = "Unexpected error: ${err.message}";
     }
