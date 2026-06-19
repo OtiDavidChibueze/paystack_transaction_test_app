@@ -248,7 +248,7 @@ class _InitializePaymentPageState extends State<InitializeTransactionPage> {
                               slideDirection: SlideDirection.left,
 
                               child: Text(
-                                "Powered by DhayveScript Solutions",
+                                "Powered by DhayveX Solutions",
                                 style: TextStyle(
                                   color: Colors.white70,
                                   fontWeight: FontWeight.w500,
